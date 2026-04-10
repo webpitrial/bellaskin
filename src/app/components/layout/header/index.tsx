@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import HeaderLink from './Navigation/HeaderLink'
 import { headerData } from './Navigation/Menudata'
 import MobileHeader from './Navigation/MobileHeader'
-import { Icon } from '@iconify/react/dist/iconify.js'
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -24,25 +23,14 @@ const Header = () => {
 
   return (
     <>
-      {/* REDUCED OUTSIDE PADDING: py-2 when sticky, py-4 otherwise */}
       <header className={`fixed top-0 z-[70] w-full px-4 sm:px-6 transition-all duration-300 ${sticky ? 'py-2' : 'py-4'}`}>
         
-        {/* REDUCED INSIDE PADDING: py-2 */}
         <div className={`mx-auto max-w-7xl bg-[#FDFBF7]/85 backdrop-blur-md rounded-full px-6 py-2 transition-all flex items-center justify-between border border-[#F2EAE1] ${sticky ? 'shadow-md shadow-black/5' : 'shadow-sm'}`}>
           
-          {/* Left: Navigation Links */}
-          <div className='hidden lg:flex flex-1'>
-            <ul className='flex'>
-              {headerData.map((item, index) => (
-                <HeaderLink key={index} item={item} />
-              ))}
-            </ul>
-          </div>
-
-          {/* Center: Logo */}
-          <div className='flex-shrink-0 flex justify-center lg:flex-1'>
+          {/* ── LEFT: LOGO ── */}
+          {/* Changed to justify-start */}
+          <div className='flex-shrink-0 flex justify-start lg:flex-1'>
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
-              {/* REDUCED LOGO HEIGHT: h-6 instead of h-7 */}
               <Image 
                 src="/images/logo/Logo.png" 
                 alt="Bella Skin" 
@@ -54,10 +42,19 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Right: Book Appointment Button & Mobile Toggle */}
+          {/* ── CENTER: NAVIGATION LINKS ── */}
+          {/* Added justify-center so the links are perfectly centered on the screen */}
+          <div className='hidden lg:flex flex-1 justify-center'>
+            <ul className='flex'>
+              {headerData.map((item, index) => (
+                <HeaderLink key={index} item={item} />
+              ))}
+            </ul>
+          </div>
+
+          {/* ── RIGHT: CTA BUTTON & MOBILE TOGGLE ── */}
           <div className='flex items-center justify-end flex-1 gap-4'>
             
-            {/* REDUCED BUTTON HEIGHT: py-2 */}
             <Link
               href={'/contact'}
               className='hidden lg:flex group btn-cta px-5 py-2 text-sm'>
@@ -70,7 +67,7 @@ const Header = () => {
                Book Appointment
             </Link>
 
-            {/* Mobile Menu Button - Animated CSS Hamburger */}
+            {/* Mobile Menu Button */}
             <div className='lg:hidden flex items-center'>
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}

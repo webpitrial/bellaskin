@@ -51,26 +51,38 @@ const useActiveLink = (setActiveLink: (link: string) => void) => {
 
 const HeaderLinkContent: React.FC<{ item: any }> = ({ item }) => {
   const [activeLink, setActiveLink] = useState('')
-  const [isOpen, setIsOpen] = useState(false) // Renamed for clarity
+  const [isOpen, setIsOpen] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false) // FIX: Touch detection state
   const pathname = usePathname() 
   const menuRef = useRef<HTMLLIElement>(null)
 
   useActiveLink(setActiveLink)
   
-  // Close menu when clicking outside (important for Tablet)
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    // FIX: Listen for the first touch event to permanently mark device as a touch screen
+    const handleTouch = () => setIsTouchDevice(true)
+    window.addEventListener('touchstart', handleTouch, { once: true, passive: true })
+
+    // Close menu when clicking outside
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false)
       }
     }
+    
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside) // ADDED: Listen for taps outside on tablet
+    
+    return () => {
+      window.removeEventListener('touchstart', handleTouch)
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
   }, [])
 
   const isActive = activeLink === item.href || (item.children && pathname.startsWith('/services'))
 
-  const linkClasses = `px-4 py-1.5 font-medium transition-all duration-300 text-[15px] rounded-full flex items-center gap-1 ${
+  const linkClasses = `px-3 py-1.5 font-medium transition-all duration-300 text-[15px] rounded-full flex items-center gap-1 ${
     isActive
       ? 'bg-brand-border-hover text-brand-dark' 
       : 'text-brand-body hover:bg-brand-border-hover/50 hover:text-brand-dark'
@@ -79,7 +91,7 @@ const HeaderLinkContent: React.FC<{ item: any }> = ({ item }) => {
   if (!item.children) {
     return (
       <li>
-        <Link href={item.href} className={linkClasses}>
+        <Link href={item.href || '#'} className={linkClasses}>
           {item.label}
         </Link>
       </li>
@@ -90,12 +102,16 @@ const HeaderLinkContent: React.FC<{ item: any }> = ({ item }) => {
     <li 
       ref={menuRef}
       className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      /* FIX: Only fire hover events if the user is on a desktop (mouse) device */
+      onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
+      onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
     >
-      {/* Toggle state on click for Tablet/Mobile touch */}
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        /* FIX: Ensure default event prevention so mobile taps don't double-fire */
+        onClick={(e) => {
+          e.preventDefault()
+          setIsOpen(!isOpen)
+        }}
         className={linkClasses}
       >
         {item.label}
@@ -112,32 +128,37 @@ const HeaderLinkContent: React.FC<{ item: any }> = ({ item }) => {
             exit={{ opacity: 0, y: 10, rotateX: -10 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: "top center" }}
-            className="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[600px] cursor-default"
+            className="absolute top-full pt-6 w-[90vw] max-w-[600px] cursor-default left-0 translate-x-0 xl:left-1/2 xl:-translate-x-1/2"
           >
             <div className="bg-[#FDFBF7] rounded-[2rem] shadow-2xl border border-brand-border overflow-hidden relative z-[80] flex flex-col">
               <div className="grid grid-cols-2 gap-x-4 gap-y-2 p-6">
-                {item.children.map((child: any, index: number) => (
-                  <Link 
-                    key={index} 
-                    href={child.href}
-                    onClick={() => setIsOpen(false)}
-                    className="group flex flex-col p-3 rounded-2xl hover:bg-brand-border-hover transition-colors"
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-bold text-brand-dark font-sans text-xs">
-                        {child.title}
-                      </h4>
-                      <Icon 
-                        icon="mdi:arrow-top-right" 
-                        className="opacity-0 group-hover:opacity-100 text-brand-dark transition-all transform -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" 
-                        width="14" 
-                      />
-                    </div>
-                    <p className="text-[11px] text-brand-body font-sans line-clamp-1">
-                      {child.desc}
-                    </p>
-                  </Link>
-                ))}
+                
+                {item.children.map((child: any, index: number) => {
+                  if (!child) return null;
+
+                  return (
+                    <Link 
+                      key={index} 
+                      href={child.href || '#'}
+                      onClick={() => setIsOpen(false)}
+                      className="group flex flex-col p-3 rounded-2xl hover:bg-brand-border-hover transition-colors"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <h4 className="font-bold text-brand-dark font-sans text-xs">
+                          {child.title}
+                        </h4>
+                        <Icon 
+                          icon="mdi:arrow-top-right" 
+                          className="opacity-0 group-hover:opacity-100 text-brand-dark transition-all transform -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0" 
+                          width="14" 
+                        />
+                      </div>
+                      <p className="text-[11px] text-brand-body font-sans line-clamp-1">
+                        {child.desc}
+                      </p>
+                    </Link>
+                  )
+                })}
               </div>
 
               <div className="w-full bg-brand-border-hover/30 border-t border-brand-border py-4 flex items-center justify-center">
