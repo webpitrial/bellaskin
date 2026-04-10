@@ -45,8 +45,8 @@ export default function AboutPage() {
 
   const doctorsBottom = [
     { name: "Dr. Eleanor Sterling", role: "Lead Consultant Dermatologist", img: "/images/home/why-choose/doc-1.webp" }, 
-    { name: "Dr. Alistair Hughes", role: "Medical Aesthetic Director", img: "/images/home/why-choose/doc-2.webp" },
-    { name: "Emma Croft", role: "Lead Clinical Laser Practitioner", img: "/images/home/why-choose/doc-5.webp" }
+    { name: "Dr. Alistair Hughes", role: "Medical Aesthetic Director", img: "/images/home/why-choose/doc-5.webp" },
+    { name: "Emma Croft", role: "Lead Clinical Laser Practitioner", img: "/images/home/why-choose/doc-2.webp" }
   ];
 
   const certificates = [
