@@ -40,7 +40,7 @@ export default function AboutPage() {
 
   const doctorsTop = [
     { name: "Dr. Marcus Thorne", role: "Hair Restoration Lead", img: "/images/home/why-choose/doc-4.webp" },
-    { name: "Sarah Jenkins, RN", role: "Senior Independent Nurse Prescriber", img: "/images/home/why-choose/doc-4.webp" }
+    { name: "Sarah Jenkins, RN", role: "Senior Independent Nurse Prescriber", img: "/images/home/why-choose/doc-3.webp" }
   ];
 
   const doctorsBottom = [
