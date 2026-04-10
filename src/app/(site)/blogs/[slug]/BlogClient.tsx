@@ -18,7 +18,7 @@ export default function BlogClient({ blog }: { blog: any }) {
   };
 
   return (
-    <main className="w-full pt-32 md:pt-40 pb-10 bg-transparent overflow-hidden">
+    <main className="w-full pt-24 md:pt-24 pb-10 bg-transparent overflow-hidden">
       
       {/* ── 1. ARTICLE HEADER ── */}
       <motion.div 
