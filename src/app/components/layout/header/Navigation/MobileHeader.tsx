@@ -130,7 +130,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ items, isOpen, onClose }) =
 
             {/* Footer / Utility Links */}
             <div className="px-6 py-8 bg-brand-dark text-brand-bg flex flex-col sm:flex-row justify-between items-center gap-6 text-xs font-semibold tracking-widest">
-                <div className="flex space-x-6">
+                <div className="flex space-x-6 gap-2">
                     {/* Changed links to Privacy Policy and Terms of Service */}
                     <Link href="/privacy-policy" onClick={onClose} className="hover:text-brand-sage transition-colors">PRIVACY POLICY</Link>
                     <Link href="/terms" onClick={onClose} className="hover:text-brand-sage transition-colors">TERMS</Link>
