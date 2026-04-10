@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+html {
+  /* Modern CSS: Reserves space for the scrollbar so the layout never shifts */
+  scrollbar-gutter: stable;
+}
+
+@theme {
+  --shadow-header_shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+
+  /* --- BRAND COLORS --- */
+  --color-brand-dark: #141414;
+  --color-brand-body: #282828;
+  --color-brand-sage: #A8B5A2;
+  --color-brand-sage-hover: #8FA08A;
+  --color-brand-sage-light: #E4ECE1;
+  --color-brand-bg: #F7F2EA;
+  --color-brand-border: #E5D9CC;
+  --color-brand-border-hover: #CBB79E;
+
+  /* Existing Colors */
+  --color-dark_black: #1b1d1e;
+  --color-purple_blue: #4928fd;
+  --color-purple: #ba81ee;
+  --color-blue: #70b5ff;
+  --color-orange: #ffaf68;
+  --color-green: #79d45e;
+  --color-pink: #f4889a;
+  --color-blue_gradient: #d9f3fc;
+  --color-yellow_gradient: #fdf1d3;
+  --color-pale-yellow: #f6e683;
+  --color-dark_yellow_gradient: #443f32;
+  --color-dark_blue_gradient: #303d42;
+
+  --breakpoint-Xsm: 425px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-xxl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --spacing-25: 25rem;
+  --spacing-32: 32rem;
+  --spacing-38: 38rem;
+  --spacing-48: 48rem;
+  --spacing-50: 50rem;
+  --spacing-3_75: 3.75rem;
+  --spacing-6_5: 6.5rem;
+  --spacing-18_75: 18.75rem;
+  --spacing-31_25: 31.25rem;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility container {
+  @apply w-full max-w-[82.8rem] my-0 mx-auto py-0 sm:px-7 px-5;
+}
+
+@layer utilities {
+  html {
+    scroll-behavior: smooth;
+    @apply dark:bg-dark_black;
+  }
+
+  * {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .hero-mask {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+  }
+}
+
+@layer components {
+  body {
+    @apply text-base font-normal;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1 {
+    @apply 2xl:text-9xl 2xl:leading-[156px] md:text-7xl text-5xl font-medium text-dark_black dark:text-white;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-medium text-dark_black dark:text-white;
+  }
+
+  h3 {
+    @apply text-5xl font-medium text-dark_black dark:text-white;
+  }
+
+  h4 {
+    @apply text-2xl font-medium text-dark_black dark:text-white;
+  }
+
+  h5 {
+    @apply text-xl font-medium;
+  }
+
+  h6 {
+    @apply text-lg lg:text-xl font-medium;
+  }
+
+  p {
+    @apply text-base font-normal text-dark_black dark:text-white;
+  }
+
+  /* --- REUSABLE CTA BUTTON --- */
+  .btn-cta {
+    @apply flex items-center justify-center gap-2 rounded-full font-medium uppercase tracking-wide transition-colors duration-300;
+    background-color: var(--color-brand-border);
+    color: var(--color-brand-dark);
+  }
+  
+  .btn-cta:hover {
+    background-color: var(--color-brand-border-hover);
+  }
+}
