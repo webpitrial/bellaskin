@@ -120,7 +120,7 @@ const Footer = () => {
             <div className='lg:col-span-2 flex flex-col items-center text-center md:items-start md:text-left gap-5'>
               <h4 className='font-serif text-[1.75rem] text-brand-dark'>Links</h4>
               <ul className='flex flex-col items-center md:items-start gap-3.5'>
-                {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
+                {['Home', 'About', 'Services', 'Blogs', 'Contact'].map((item, index) => (
                   <li key={index}>
                     <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className='text-brand-body hover:text-brand-sage-hover transition-colors text-[15px]'>
                       {item}

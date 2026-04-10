@@ -32,7 +32,7 @@ const Header = () => {
           
           {/* Left: Navigation Links */}
           <div className='hidden lg:flex flex-1'>
-            <ul className='flex gap-2'>
+            <ul className='flex'>
               {headerData.map((item, index) => (
                 <HeaderLink key={index} item={item} />
               ))}

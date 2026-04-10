@@ -247,8 +247,7 @@ function HeroSection({ isPreloaderDone }: HeroProps) {
                 href='/services' 
                 className='flex items-center justify-center gap-2 px-8 py-3.5 w-full sm:w-auto rounded-full border border-brand-dark text-brand-dark bg-brand-bg/50 backdrop-blur-sm hover:bg-brand-dark hover:text-brand-bg transition-colors font-medium uppercase tracking-wide text-sm'
               >
-                <Icon icon="mdi:play-circle-outline" width="20" height="20" />
-                Watch Video
+                View All Services
               </Link>
             </motion.div>
           </div>

@@ -133,7 +133,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ items, isOpen, onClose }) =
                 <div className="flex space-x-6">
                     {/* Changed links to Privacy Policy and Terms of Service */}
                     <Link href="/privacy-policy" onClick={onClose} className="hover:text-brand-sage transition-colors">PRIVACY POLICY</Link>
-                    <Link href="/terms-of-service" onClick={onClose} className="hover:text-brand-sage transition-colors">TERMS OF SERVICE</Link>
+                    <Link href="/terms" onClick={onClose} className="hover:text-brand-sage transition-colors">TERMS</Link>
                 </div>
                 
                 {/* Social Icons Updated to Instagram, Facebook, LinkedIn, X */}

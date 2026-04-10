@@ -31,20 +31,33 @@ const SECTIONS = [
 export default function PrivacyPolicyPage() {
   const [activeId, setActiveId] = useState('who-we-are')
 
-  useEffect(() => {
+useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY + 240; // Offset for sticky headers
+      // Set the default to the first section
       let currentSection = SECTIONS[0].id;
 
+      // Loop through all sections
       for (const section of SECTIONS) {
         const el = document.getElementById(section.id);
-        if (el && el.offsetTop <= scrollY) {
-          currentSection = section.id;
+        if (el) {
+          // If the top of the section crosses the 300px mark (just below your sticky header),
+          // it becomes the new active section.
+          if (el.getBoundingClientRect().top <= 300) {
+            currentSection = section.id;
+          }
         }
       }
+      
+      // FIXED: Changed from setActiveSection to setActiveId
       setActiveId(currentSection);
     };
+
+    // Attach the event listener
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Call it once immediately on mount to set the correct initial state
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -61,7 +74,7 @@ export default function PrivacyPolicyPage() {
       <style>{`.hide-scroll::-webkit-scrollbar { display: none; } .hide-scroll { scrollbar-width: none; }`}</style>
 
       {/* ════════ HERO ════════ */}
-      <section className="w-full pt-32 md:pt-40 pb-8 md:pb-16 px-5 sm:px-7 max-w-[82.8rem] mx-auto">
+      <section className="w-full pt-24 md:pt-40 pb-8 md:pb-16 px-5 sm:px-7 max-w-[82.8rem] mx-auto">
         <FadeUp>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E5D9CC] bg-[#E5D9CC]/30 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#CBB79E] animate-pulse"></span>
@@ -76,34 +89,37 @@ export default function PrivacyPolicyPage() {
         </FadeUp>
       </section>
 
-      {/* ════════ BODY ════════ */}
+{/* ════════ BODY ════════ */}
       <section className="w-full pb-20 md:pb-24 px-5 sm:px-7 max-w-[82.8rem] mx-auto">
         
-        {/* CRITICAL FIX: items-start prevents flex children from stretching */}
-        <div className="flex flex-col md:flex-row items-start gap-0 md:gap-16 lg:gap-24">
+        {/* CHANGED: lg:flex-row to trigger the layout change only on desktops */}
+        <div className="flex flex-col lg:flex-row items-start gap-0 lg:gap-24">
 
-          {/* ── STICKY TOC ── */}
-          {/* CRITICAL FIX: Added h-max so it doesn't match the article height */}
-          <aside className="sticky top-[72px] md:top-24 z-40 w-full md:w-64 flex-shrink-0 h-max bg-[#F7F2EA]/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none py-4 md:py-0 border-b border-[#141414]/10 md:border-none mb-8 md:mb-0 -mx-5 px-5 sm:-mx-7 sm:px-7 md:mx-0 md:px-0">
-            <p className="hidden md:block font-sans text-[10px] font-bold tracking-widest uppercase text-[#141414]/40 mb-6 px-2">Contents</p>
-            <nav className="flex flex-row md:flex-col gap-2 md:gap-1 overflow-x-auto md:overflow-visible hide-scroll">
+          {/* ── STICKY TOC (Hidden on Mobile/Tablet) ── */}
+          {/* CHANGED: Added 'hidden lg:block' and removed all the messy mobile CSS */}
+          <aside className="hidden lg:block sticky top-24 z-40 w-64 flex-shrink-0 h-max">
+            <p className="font-sans text-[10px] font-bold tracking-widest uppercase text-[#141414]/40 mb-6 px-2">Contents</p>
+            <nav className="flex flex-col gap-1 hide-scroll">
               {SECTIONS.map(s => (
                 <button 
                   key={s.id} 
                   onClick={() => scrollTo(s.id)}
-                  className={`flex-shrink-0 flex items-center gap-3 px-4 py-2 md:px-3 md:py-2.5 rounded-full md:rounded-xl transition-colors text-left ${
-                    activeId === s.id ? 'bg-[#141414] md:bg-[#E5D9CC]/30 text-white md:text-[#141414]' : 'bg-white/50 md:bg-transparent text-[#141414]/70 hover:bg-[#141414]/5'
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-left w-full ${
+                    activeId === s.id ? 'bg-[#E5D9CC]/30 text-[#141414]' : 'bg-transparent text-[#141414]/70 hover:bg-[#141414]/5'
                   }`}
                 >
                   <span className={`font-sans text-[10px] font-bold tracking-wider ${activeId === s.id ? 'text-[#CBB79E]' : 'text-[#141414]/40'}`}>{s.num}</span>
-                  <span className="font-sans text-xs md:text-sm font-medium whitespace-nowrap md:whitespace-normal">{s.label}</span>
+                  <span className="font-sans text-sm font-medium">{s.label}</span>
                 </button>
               ))}
             </nav>
           </aside>
 
           {/* ── RIGHT: CONTENT ── */}
-          <article className="min-w-0 flex-1 w-full max-w-3xl">
+          {/* CHANGED: Added 'mx-auto lg:mx-0' to perfectly center the text on iPads and phones */}
+          <article className="min-w-0 flex-1 w-full max-w-3xl mx-auto lg:mx-0">
+          
+          {/* ... the rest of your FadeUp content remains exactly the same below here! ... */}
             <FadeUp>
               <p className="font-sans text-sm md:text-base text-[#141414]/70 leading-relaxed mb-10">
                 Bella Skin is committed to protecting your privacy and handling your sensitive medical and personal data with the utmost care. This policy explains how we collect, use, and protect your information when you visit our clinic, use our website, or undergo clinical treatments with us in the United Kingdom.

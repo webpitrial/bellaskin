@@ -12,5 +12,6 @@ export const headerData: any[] = [
             href: `/services/${service.slug}`
         }))
     },
+    { label: 'Blogs', href: '/blogs' },
     { label: 'Contact', href: '/contact' },
 ];
