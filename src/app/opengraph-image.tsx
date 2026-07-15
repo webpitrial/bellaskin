@@ -7,7 +7,7 @@ export const contentType = 'image/png'
 
 const CONFIG = {
   tagline: 'Pioneering aesthetic medicine in the heart of the UK.',
-  serviceText: 'GMC-registered practitioners delivering bespoke, evidence-based dermatology and aesthetic treatments — Harley Street-level excellence, ethical and patient-first.',
+  serviceText: 'GMC-registered practitioners delivering bespoke, evidence-based dermatology and aesthetic treatments - Excellent Treatments, Ethical and Patient-first.',
   logoWidth: 320,
   logoColor: '#2B2824',
   bgColor: '#E8E3DC',
