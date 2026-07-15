@@ -1,4 +1,4 @@
-import './globals'
+import './globals.css'
 import Providers from './providers'
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google'
 import type { Metadata } from 'next'
