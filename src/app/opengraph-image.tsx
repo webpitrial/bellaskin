@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Bella Skin Studio — Aesthetic Clinic Website Concept'
+export const alt = 'Bella Skin Studio'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -16,11 +16,10 @@ export default async function Image() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px',
-          backgroundColor: '#E8E3DC', // warm stone, not dark
+          backgroundColor: '#E8E3DC',
           backgroundImage: 'radial-gradient(circle at 85% 20%, #DDD6C9 0%, #E8E3DC 55%)',
         }}
       >
-        {/* Top: wordmark */}
         <div
           style={{
             display: 'flex',
@@ -28,20 +27,13 @@ export default async function Image() {
             fontSize: 40,
             fontWeight: 600,
             letterSpacing: '0.05em',
-            color: '#2B2824', // charcoal
+            color: '#2B2824',
           }}
         >
           BELLA SKIN STUDIO
         </div>
 
-        {/* Middle: headline */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 16,
-          }}
-        >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div
             style={{
               fontSize: 64,
@@ -53,18 +45,11 @@ export default async function Image() {
           >
             Modern skin care, reimagined.
           </div>
-          <div
-            style={{
-              fontSize: 28,
-              color: '#6B6459', // muted charcoal
-              fontWeight: 400,
-            }}
-          >
-            A website concept for aesthetic &amp; dermatology clinics
+          <div style={{ fontSize: 28, color: '#6B6459', fontWeight: 400 }}>
+            Aesthetic &amp; dermatology clinic
           </div>
         </div>
 
-        {/* Bottom: domain + tag */}
         <div
           style={{
             display: 'flex',
@@ -75,17 +60,6 @@ export default async function Image() {
           }}
         >
           <div style={{ display: 'flex' }}>bellaskin.webpaitech.com</div>
-          <div
-            style={{
-              display: 'flex',
-              padding: '10px 24px',
-              border: '1px solid #2B2824',
-              borderRadius: 999,
-              fontSize: 20,
-            }}
-          >
-            Webpai Tech
-          </div>
         </div>
       </div>
     ),

@@ -18,21 +18,21 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Bella Skin Studio — Aesthetic Clinic Website Concept',
-  description: 'A modern, editorial-minimal website concept for aesthetic and dermatology clinics.',
+  title: 'Bella Skin Studio',
+  description: 'Modern skin care, reimagined. Book your consultation at Bella Skin Studio.',
   metadataBase: new URL('https://bellaskin.webpaitech.com'),
   openGraph: {
-    title: 'Bella Skin Studio — Aesthetic Clinic Website Concept',
-    description: 'A modern, editorial-minimal website concept for aesthetic and dermatology clinics.',
+    title: 'Bella Skin Studio',
+    description: 'Modern skin care, reimagined. Book your consultation at Bella Skin Studio.',
     url: 'https://bellaskin.webpaitech.com',
-    siteName: 'Webpai Tech',
+    siteName: 'Bella Skin Studio',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bella Skin Studio — Aesthetic Clinic Website Concept',
-    description: 'A modern, editorial-minimal website concept for aesthetic and dermatology clinics.',
+    title: 'Bella Skin Studio',
+    description: 'Modern skin care, reimagined. Book your consultation at Bella Skin Studio.',
   },
 }
 
