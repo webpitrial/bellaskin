@@ -5,32 +5,22 @@ export const alt = 'Bella Skin Studio'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-// ─────────────────────────────────────────────
-// CUSTOMIZE PER CLINIC — everything lives here
-// ─────────────────────────────────────────────
 const CONFIG = {
-  domain: 'bellaskin.webpaitech.com',
-  headline: 'Modern skin care, reimagined.',
-  subline: 'Aesthetic & dermatology clinic',
-  logoWidth: 220,
-  logoColor: '#2B2824', // recolor logo to match theme (original is #141414)
+  tagline: 'Pioneering aesthetic medicine in the heart of the UK.',
+  serviceText: 'GMC-registered practitioners delivering bespoke, evidence-based dermatology and aesthetic treatments — Harley Street-level excellence, ethical and patient-first.',
+  logoWidth: 320,
+  logoColor: '#2B2824',
   bgColor: '#E8E3DC',
   bgGradient: 'radial-gradient(circle at 85% 20%, #DDD6C9 0%, #E8E3DC 55%)',
   textColor: '#2B2824',
   mutedTextColor: '#6B6459',
-  headlineSize: 64,
-  sublineSize: 28,
-  domainSize: 24,
+  taglineSize: 52,
+  serviceTextSize: 24,
   padding: 80,
 }
-// ─────────────────────────────────────────────
 
 const LogoSVG = ({ width, color }: { width: number; color: string }) => (
-  <svg
-    width={width}
-    viewBox="0 0 277.29 46.69"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width={width} viewBox="0 0 277.29 46.69" xmlns="http://www.w3.org/2000/svg">
     <path fill={color} d="M63.71,96c.06-.84.08-1.78.08-2.8V63.27a20.89,20.89,0,0,0-.4-5.08,1.88,1.88,0,0,0-2-1.34l12.58-5.19a11.88,11.88,0,0,0-.36,2.92c0,1.19,0,2.76,0,4.71V90.47a15,15,0,0,0,3.89,4.87,7.56,7.56,0,0,0,4.71,1.78q4.06,0,6-4.42A27.39,27.39,0,0,0,90,81.86a25.74,25.74,0,0,0-2-10.68,6.56,6.56,0,0,0-6.33-4.26q-4.39,0-8.2,5a12.81,12.81,0,0,1,4.26-5.57,11.83,11.83,0,0,1,7.27-2.15q7.31,0,11,4.63a17.66,17.66,0,0,1,3.69,11.37q0,8.12-4.18,13.11T83,98.34a17.38,17.38,0,0,1-9.83-2.84,3.33,3.33,0,0,1-1.54,2.19,6.77,6.77,0,0,1-3.33.65h-5A16.22,16.22,0,0,0,63.71,96Z" transform="translate(-61.36 -51.66)"/>
     <path fill={color} d="M110.92,95.87a15.78,15.78,0,0,1-6.69-6.46,18,18,0,0,1-2.11-8.6A17.81,17.81,0,0,1,104,72.6a14.49,14.49,0,0,1,6-6,21,21,0,0,1,10.39-2.32q7.23,0,11.21,3.25a10.08,10.08,0,0,1,4,8.12,12.4,12.4,0,0,1-2.48,7.18,17.14,17.14,0,0,1-7.35,5.69,24.14,24.14,0,0,1-11.61,1.66q6.35-1,9-5.23a18.09,18.09,0,0,0,2.67-9.79,12.83,12.83,0,0,0-1.74-6.82c-1.17-1.89-2.64-2.84-4.43-2.84q-3.74,0-5.8,4.47a25.29,25.29,0,0,0-2.07,10.71,17.56,17.56,0,0,0,3.25,10.84q3.24,4.35,10,4.35a21.58,21.58,0,0,0,8.85-2A12.93,12.93,0,0,1,129.52,97a16.48,16.48,0,0,1-7,1.34A24.21,24.21,0,0,1,110.92,95.87Z" transform="translate(-61.36 -51.66)"/>
     <path fill={color} d="M140.84,95.54c.06-.84.08-1.77.08-2.8V63.27a20.89,20.89,0,0,0-.4-5.08,1.88,1.88,0,0,0-2-1.34l12.58-5.19a11.88,11.88,0,0,0-.36,2.92c0,1.19,0,2.76,0,4.71V92.74c0,1,0,2,.08,2.8a16.35,16.35,0,0,0,.32,2.4H140.52A16.35,16.35,0,0,0,140.84,95.54Z" transform="translate(-61.36 -51.66)"/>
@@ -53,46 +43,41 @@ export default async function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
+          gap: 40,
           padding: CONFIG.padding,
           backgroundColor: CONFIG.bgColor,
           backgroundImage: CONFIG.bgGradient,
         }}
       >
-        {/* Logo */}
         <div style={{ display: 'flex' }}>
           <LogoSVG width={CONFIG.logoWidth} color={CONFIG.logoColor} />
         </div>
 
-        {/* Headline + subline */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div
-            style={{
-              fontSize: CONFIG.headlineSize,
-              fontWeight: 500,
-              color: CONFIG.textColor,
-              lineHeight: 1.15,
-              maxWidth: 900,
-              display: 'flex',
-            }}
-          >
-            {CONFIG.headline}
-          </div>
-          <div
-            style={{
-              fontSize: CONFIG.sublineSize,
-              color: CONFIG.mutedTextColor,
-              fontWeight: 400,
-              display: 'flex',
-            }}
-          >
-            {CONFIG.subline}
-          </div>
+        <div
+          style={{
+            fontSize: CONFIG.taglineSize,
+            fontWeight: 500,
+            color: CONFIG.textColor,
+            lineHeight: 1.2,
+            maxWidth: 980,
+            display: 'flex',
+          }}
+        >
+          {CONFIG.tagline}
         </div>
 
-        {/* Domain */}
-        <div style={{ display: 'flex', fontSize: CONFIG.domainSize, color: CONFIG.textColor }}>
-          {CONFIG.domain}
+        <div
+          style={{
+            fontSize: CONFIG.serviceTextSize,
+            color: CONFIG.mutedTextColor,
+            fontWeight: 400,
+            lineHeight: 1.5,
+            maxWidth: 900,
+            display: 'flex',
+          }}
+        >
+          {CONFIG.serviceText}
         </div>
       </div>
     ),
